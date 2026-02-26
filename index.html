@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class Trip 🎒</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD166;
+    --coral: #FF6B6B;
+    --mint: #06D6A0;
+    --sky: #118AB2;
+    --navy: #073B4C;
+    --peach: #FFF0E6;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--peach);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 40px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px dashed var(--sun);
+  }
+  .logo { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--coral); letter-spacing: 1px; }
+  .logo span { color: var(--sky); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { text-decoration: none; font-weight: 700; color: var(--navy); transition: color .2s; }
+  nav ul a:hover { color: var(--coral); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; animation: float 6s ease-in-out infinite;
+  }
+  .blob-1 { width: 400px; height: 400px; background: var(--sun); top: -100px; left: -100px; animation-delay: 0s; }
+  .blob-2 { width: 350px; height: 350px; background: var(--coral); bottom: 0; right: -80px; animation-delay: 2s; }
+  .blob-3 { width: 280px; height: 280px; background: var(--mint); top: 40%; left: 60%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--sun); color: var(--navy);
+    font-weight: 800; font-size: .9rem; text-transform: uppercase; letter-spacing: 2px;
+    padding: 6px 20px; border-radius: 999px;
+    border: 2px solid var(--navy);
+    margin-bottom: 24px;
+    animation: pop .5s cubic-bezier(.175,.885,.32,1.275) both;
+  }
+
+  @keyframes pop { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 20px;
+    animation: slideUp .6s .1s both;
+  }
+  h1 .highlight { color: var(--coral); }
+  h1 .highlight2 { color: var(--sky); }
+
+  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-sub {
+    font-size: 1.2rem; font-weight: 600; color: #555;
+    max-width: 520px; margin: 0 auto 40px;
+    animation: slideUp .6s .2s both;
+  }
+
+  .emoji-strip {
+    font-size: 2.5rem; letter-spacing: 12px; margin-bottom: 40px;
+    animation: slideUp .6s .3s both;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--coral); color: var(--white);
+    font-family: 'Fredoka One', cursive; font-size: 1.3rem;
+    padding: 16px 40px; border-radius: 999px;
+    border: 3px solid var(--navy);
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--navy);
+    transition: transform .15s, box-shadow .15s;
+    animation: slideUp .6s .4s both;
+  }
+  .cta-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--navy); }
+  .cta-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--navy); }
+
+  /* ─── INFO CARDS ─── */
+  #plan {
+    padding: 80px 40px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem; text-align: center; margin-bottom: 48px;
+    color: var(--navy);
+  }
+  .section-title span { color: var(--coral); }
+
+  .cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
+  }
+  .card {
+    background: var(--white);
+    border: 2.5px solid var(--navy); border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 5px 5px 0 var(--navy);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--navy); }
+  .card-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .card h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: var(--sky); margin-bottom: 8px; }
+  .card p { font-size: .95rem; color: #555; line-height: 1.6; }
+  .card.accent-1 { background: var(--sun); }
+  .card.accent-2 { background: #E0FAF3; }
+  .card.accent-3 { background: #FFE8E8; }
+
+  /* ─── CALENDAR SECTION ─── */
+  #calendar {
+    padding: 80px 40px;
+    background: var(--white);
+    border-top: 3px dashed var(--sun);
+    border-bottom: 3px dashed var(--sun);
+  }
+  .cal-wrap { max-width: 900px; margin: 0 auto; }
+
+  /* ─── GOOGLE SIGN-IN ─── */
+  #auth-area {
+    text-align: center; padding: 40px 20px;
+    background: var(--peach); border-radius: 20px;
+    border: 2.5px solid var(--navy);
+    box-shadow: 5px 5px 0 var(--navy);
+    margin-bottom: 32px;
+  }
+  #auth-area p { font-weight: 700; margin-bottom: 20px; font-size: 1.1rem; }
+
+  .google-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--white); border: 2.5px solid var(--navy);
+    border-radius: 999px; padding: 12px 28px;
+    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; box-shadow: 4px 4px 0 var(--navy);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .google-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--navy); }
+  .google-btn svg { width: 22px; height: 22px; }
+
+  #user-bar {
+    display: none; justify-content: space-between; align-items: center;
+    background: var(--peach); border-radius: 16px;
+    border: 2.5px solid var(--navy); padding: 14px 24px;
+    margin-bottom: 24px;
+    box-shadow: 4px 4px 0 var(--navy);
+  }
+  #user-bar.visible { display: flex; }
+  .user-info { display: flex; align-items: center; gap: 12px; }
+  .user-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--coral); border: 2px solid var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: white; font-size: 1.1rem;
+  }
+  #user-name { font-weight: 800; }
+  #user-email { font-size: .8rem; color: #777; }
+  .signout-btn {
+    background: none; border: 2px solid var(--navy); border-radius: 999px;
+    padding: 6px 16px; font-family: 'Nunito', sans-serif; font-weight: 700;
+    cursor: pointer; font-size: .85rem; transition: background .2s;
+  }
+  .signout-btn:hover { background: var(--navy); color: white; }
+
+  /* ─── BLOCKED SCREEN ─── */
+  #blocked-area {
+    display: none;
+    text-align: center; padding: 48px 32px;
+    background: #FFF5F5; border-radius: 20px;
+    border: 2.5px solid var(--coral);
+    box-shadow: 5px 5px 0 var(--coral);
+    margin-bottom: 32px;
+    animation: pop .4s cubic-bezier(.175,.885,.32,1.275) both;
+  }
+  #blocked-area.visible { display: block; }
+  .blocked-icon { font-size: 3.5rem; margin-bottom: 12px; }
+  #blocked-area h3 { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--coral); margin-bottom: 8px; }
+  #blocked-area p { color: #666; font-size: 1rem; margin-bottom: 24px; line-height: 1.6; }
+  #blocked-email-display {
+    display: inline-block; background: #FFE8E8; border: 2px dashed var(--coral);
+    border-radius: 10px; padding: 6px 18px; font-weight: 800; font-size: .95rem;
+    color: var(--coral); margin-bottom: 20px;
+  }
+
+  .request-form { text-align: left; max-width: 420px; margin: 0 auto; }
+  .request-form label { display: block; font-weight: 800; margin-bottom: 6px; font-size: .9rem; }
+  .request-form input, .request-form textarea {
+    width: 100%; padding: 12px 16px; border-radius: 12px;
+    border: 2.5px solid var(--navy); font-family: 'Nunito', sans-serif;
+    font-size: .95rem; margin-bottom: 16px; background: white;
+    transition: border-color .2s;
+  }
+  .request-form input:focus, .request-form textarea:focus { outline: none; border-color: var(--coral); }
+  .request-form textarea { resize: vertical; min-height: 80px; }
+  .request-btn {
+    width: 100%; background: var(--coral); color: white;
+    font-family: 'Fredoka One', cursive; font-size: 1.2rem;
+    padding: 14px; border-radius: 999px; border: 2.5px solid var(--navy);
+    cursor: pointer; box-shadow: 4px 4px 0 var(--navy);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .request-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--navy); }
+  .back-link {
+    display: inline-block; margin-top: 20px; font-weight: 700; color: #999;
+    cursor: pointer; font-size: .9rem; text-decoration: underline;
+  }
+  .back-link:hover { color: var(--navy); }
+
+  /* ─── CALENDAR GRID ─── */
+  #cal-container { display: none; }
+  #cal-container.visible { display: block; }
+
+  .cal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+  }
+  .cal-nav {
+    background: var(--sky); color: white; border: 2px solid var(--navy);
+    border-radius: 999px; padding: 8px 18px;
+    font-family: 'Fredoka One', cursive; font-size: 1.1rem;
+    cursor: pointer; box-shadow: 3px 3px 0 var(--navy);
+    transition: transform .15s;
+  }
+  .cal-nav:hover { transform: scale(1.05); }
+  #month-label { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--navy); }
+
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 24px;
+  }
+  .day-name {
+    text-align: center; font-weight: 800; font-size: .8rem; text-transform: uppercase;
+    color: var(--sky); padding: 8px 0;
+  }
+  .day-cell {
+    aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 12px; border: 2px solid transparent;
+    cursor: pointer; transition: all .15s; font-weight: 700; position: relative;
+    font-size: .95rem;
+  }
+  .day-cell.other-month { opacity: .3; cursor: default; }
+  .day-cell.today { border-color: var(--coral); }
+  .day-cell:not(.other-month):not(.past):hover { background: var(--sun); border-color: var(--navy); transform: scale(1.08); }
+  .day-cell.past { opacity: .4; cursor: not-allowed; }
+  .day-cell.selected {
+    background: var(--mint); border-color: var(--navy);
+    box-shadow: 3px 3px 0 var(--navy);
+  }
+  .day-cell.selected::after {
+    content: '✓'; font-size: .7rem; position: absolute; bottom: 4px; color: var(--navy); font-weight: 800;
+  }
+  .availability-dots {
+    display: flex; gap: 2px; margin-top: 2px; flex-wrap: wrap; justify-content: center;
+  }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
+
+  .save-btn {
+    display: block; width: 100%;
+    background: var(--mint); color: var(--navy);
+    font-family: 'Fredoka One', cursive; font-size: 1.3rem;
+    padding: 16px; border-radius: 16px; border: 2.5px solid var(--navy);
+    cursor: pointer; box-shadow: 4px 4px 0 var(--navy);
+    transition: transform .15s, box-shadow .15s;
+    margin-bottom: 32px;
+  }
+  .save-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--navy); }
+
+  /* ─── RESULTS ─── */
+  #results-area { margin-top: 16px; }
+  .results-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; margin-bottom: 16px; color: var(--navy); }
+  .result-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 18px; background: var(--peach);
+    border: 2px solid var(--navy); border-radius: 12px; margin-bottom: 8px;
+  }
+  .result-date { font-weight: 800; }
+  .result-count {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .count-bar-wrap { width: 120px; height: 10px; background: #ddd; border-radius: 999px; overflow: hidden; }
+  .count-bar { height: 100%; background: var(--coral); border-radius: 999px; transition: width .4s; }
+  .count-num { font-weight: 800; font-size: .9rem; color: var(--coral); min-width: 40px; text-align: right; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center; padding: 40px;
+    font-weight: 700; color: #888; font-size: .9rem;
+  }
+
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--navy); color: white; border-radius: 999px;
+    padding: 14px 32px; font-weight: 700; font-size: 1rem;
+    transition: transform .3s cubic-bezier(.175,.885,.32,1.275);
+    z-index: 999;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Class<span>Trip</span> 🎒</div>
+  <ul>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#plan">The Plan</a></li>
+    <li><a href="#calendar">Availability</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-badge">🎉 End of Semester Trip</div>
+  <h1>Let's Go on an<br><span class="highlight">Adventure</span><br><span class="highlight2">Together!</span></h1>
+  <p class="hero-sub">We made it through the semester — now it's time to celebrate. Help us find the perfect dates for our class trip!</p>
+  <div class="emoji-strip">🏖️ 🏔️ 🌆 🗺️ 🎉</div>
+  <a href="#calendar" class="cta-btn">Pick My Dates 📅</a>
+</section>
+
+<!-- THE PLAN -->
+<section id="plan">
+  <h2 class="section-title">The <span>Plan</span> So Far</h2>
+  <div class="cards">
+    <div class="card accent-1">
+      <div class="card-icon">🗺️</div>
+      <h3>Destination TBD</h3>
+      <p>We haven't locked in a spot yet — that's part of the fun! Share your availability first, then we'll vote on the destination together.</p>
+    </div>
+    <div class="card accent-2">
+      <div class="card-icon">👥</div>
+      <h3>The Whole Class</h3>
+      <p>The more the merrier! We want to find dates that work for as many people as possible. Sign in and pick your free days below.</p>
+    </div>
+    <div class="card accent-3">
+      <div class="card-icon">📅</div>
+      <h3>End of Semester</h3>
+      <p>We're targeting the end of semester window. Pick all the dates you're available and we'll find the sweet spot that works for everyone.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Stay Tuned</h3>
+      <p>Once we collect everyone's availability, we'll announce the final dates and destination. More features coming soon — budget planner, activity votes & more!</p>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="cal-wrap">
+    <h2 class="section-title">Your <span>Availability</span> 📅</h2>
+
+    <!-- Auth area (shown when logged out) -->
+    <div id="auth-area">
+      <p>Sign in with your school Gmail to mark your available dates 👇</p>
+      <button class="google-btn" onclick="mockSignIn()">
+        <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+        Sign in with Google
+      </button>
+      <p style="margin-top:16px; font-size:.85rem; color:#888;">⚠️ To enable real Google Sign-In, add your Google OAuth Client ID below in the script.</p>
+    </div>
+
+    <!-- User bar (shown when logged in) -->
+    <div id="user-bar">
+      <div class="user-info">
+        <div class="user-avatar" id="avatar-initials">?</div>
+        <div>
+          <div id="user-name">Loading...</div>
+          <div id="user-email"></div>
+        </div>
+      </div>
+      <button class="signout-btn" onclick="signOut()">Sign out</button>
+    </div>
+
+    <!-- Blocked screen (shown when email not on allowlist) -->
+    <div id="blocked-area">
+      <div class="blocked-icon">🚫</div>
+      <h3>Access Restricted</h3>
+      <p>Oops! The email address below isn't on the guest list for this trip. Only invited classmates can access the site.<br>Fill out the form and we'll let the organiser know!</p>
+      <div id="blocked-email-display"></div>
+      <div class="request-form">
+        <label>Your name</label>
+        <input type="text" id="req-name" placeholder="e.g. Alex Smith" />
+        <label>Your Gmail</label>
+        <input type="email" id="req-email" readonly style="background:#f5f5f5; color:#999;" />
+        <label>Message to organiser (optional)</label>
+        <textarea id="req-message" placeholder="Hey! I think I should be on the list..."></textarea>
+        <button class="request-btn" onclick="sendAccessRequest()">📩 Send Access Request</button>
+      </div>
+      <span class="back-link" onclick="resetToSignIn()">← Try a different account</span>
+    </div>
+
+    <!-- Calendar (shown when logged in) -->
+    <div id="cal-container">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="changeMonth(-1)">← Prev</button>
+        <div id="month-label"></div>
+        <button class="cal-nav" onclick="changeMonth(1)">Next →</button>
+      </div>
+      <div class="cal-grid" id="cal-grid">
+        <div class="day-name">Sun</div>
+        <div class="day-name">Mon</div>
+        <div class="day-name">Tue</div>
+        <div class="day-name">Wed</div>
+        <div class="day-name">Thu</div>
+        <div class="day-name">Fri</div>
+        <div class="day-name">Sat</div>
+      </div>
+      <button class="save-btn" onclick="saveDates()">💾 Save My Availability</button>
+
+      <!-- Results -->
+      <div id="results-area">
+        <div class="results-title">📊 Class Availability Overview</div>
+        <div id="results-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with ❤️ for our class trip &nbsp;·&nbsp; ClassTrip 2025
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════════════════
+     GOOGLE SIGN-IN SETUP INSTRUCTIONS
+     ══════════════════════════════════════════════════
+     1. Go to https://console.cloud.google.com
+     2. Create a project → APIs & Services → Credentials
+     3. Create OAuth 2.0 Client ID (Web Application)
+     4. Add your site URL to Authorized JavaScript origins
+     5. Replace YOUR_GOOGLE_CLIENT_ID below with your actual Client ID
+     ══════════════════════════════════════════════════ -->
+<script src="https://accounts.google.com/gsi/client" async></script>
+<script>
+  // ═══════════════════════════════════════════════════════
+  //  ✏️  ORGANISER CONFIG — Edit these two sections!
+  // ═══════════════════════════════════════════════════════
+
+  // 1. Your Google OAuth Client ID (see setup instructions below)
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+
+  // 2. Allowlist — add every classmate's Gmail here (lowercase)
+  const ALLOWED_EMAILS = [
+    'abed.shehada@learningplanetinstitute.org',
+    'anja.stijepovic@learningplanetinstitute.org',
+    'charles.ouallet@learningplanetinstitute.org',
+    'de.jicuomu@learningplanetinstitute.org',
+    'derek.wilson@learningplanetinstitute.org',
+    'donghan.yan@learningplanetinstitute.org',
+    'elizaveta.zanozina@learningplanetinstitute.org',
+    'elsa.k.donovan@learningplanetinstitute.org',
+    'giullianna.borgeslopes@learningplanetinstitute.org',
+    'hainam.pham@learningplanetinstitute.org',
+    'haruka.kobayashi@learningplanetinstitute.org',
+    'hira.shehzadi@learningplanetinstitute.org',
+    'jacqueline.landi@learningplanetinstitute.org',
+    'janita.naz@learningplanetinstitute.org',
+    'juyeon.lee@learningplanetinstitute.org',
+    'maria.petropoulos@learningplanetinstitute.org',
+    'mariaangelica.meza@learningplanetinstitute.org',
+    'minh-son.nguyen@learningplanetinstitute.org',
+    'zoe.zulu@learningplanetinstitute.org',
+    'm-uzair.qadir@learningplanetinstitute.org',
+    'olia.mahjabin@learningplanetinstitute.org',
+    'riugabriel.rodriguez@learningplanetinstitute.org',
+    'rui.mao@learningplanetinstitute.org',
+    'sanil.pandhare@learningplanetinstitute.org',
+    'suleyman.hanyyev@learningplanetinstitute.org',
+    'yaqing.huo@learningplanetinstitute.org',
+    'zeeshan.ahmed@learningplanetinstitute.org',
+    'zoja.savic@learningplanetinstitute.org',
+    
+  ];
+
+  // 3. Your own Gmail — access requests will be sent here
+  const ORGANISER_EMAIL = 'organiser@gmail.com';
+
+  // ═══════════════════════════════════════════════════════
+
+  let currentUser = null;
+  let selectedDates = new Set();
+  let viewYear, viewMonth;
+
+  function isAllowed(email) {
+    return ALLOWED_EMAILS.map(e => e.toLowerCase()).includes(email.toLowerCase());
+  }
+
+  // All responses stored in localStorage (key: classAvailability)
+  function loadStorage() {
+    try { return JSON.parse(localStorage.getItem('classAvailability') || '{}'); } catch { return {}; }
+  }
+  function saveStorage(data) { localStorage.setItem('classAvailability', JSON.stringify(data)); }
+
+  // ─── MOCK SIGN IN (demo mode — works without OAuth setup) ───
+  function mockSignIn() {
+    const email = prompt("Demo mode: Enter a Gmail to test with.\n\nTry an allowed email like: alice@gmail.com\nOr an unknown one like: unknown@gmail.com", "alice@gmail.com");
+    if (!email) return;
+    const name = email.split('@')[0].replace(/\./g,' ').replace(/\b\w/g, c => c.toUpperCase());
+    currentUser = { name, email: email.toLowerCase() };
+    afterSignIn();
+  }
+
+  // ─── REAL GOOGLE SIGN IN ───
+  // Uncomment once you have your Client ID:
+  /*
+  function initGoogleSignIn() {
+    if (GOOGLE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID') return;
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: (response) => {
+        const payload = parseJwt(response.credential);
+        currentUser = { name: payload.name, email: payload.email.toLowerCase() };
+        afterSignIn();
+      }
+    });
+    google.accounts.id.renderButton(
+      document.querySelector('.google-btn'),
+      { theme: 'outline', size: 'large', shape: 'pill' }
+    );
+  }
+  function parseJwt(token) { return JSON.parse(atob(token.split('.')[1])); }
+  window.onload = initGoogleSignIn;
+  */
+
+  // ─── AFTER GOOGLE RETURNS — check allowlist ───
+  function afterSignIn() {
+    document.getElementById('auth-area').style.display = 'none';
+    if (isAllowed(currentUser.email)) {
+      onAccessGranted();
+    } else {
+      onAccessDenied();
+    }
+  }
+
+  function onAccessGranted() {
+    document.getElementById('blocked-area').classList.remove('visible');
+    document.getElementById('user-bar').classList.add('visible');
+    document.getElementById('cal-container').classList.add('visible');
+    document.getElementById('user-name').textContent = currentUser.name;
+    document.getElementById('user-email').textContent = currentUser.email;
+    document.getElementById('avatar-initials').textContent =
+      currentUser.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+
+    const all = loadStorage();
+    selectedDates = new Set(all[currentUser.email]?.dates || []);
+    const now = new Date();
+    viewYear = now.getFullYear();
+    viewMonth = now.getMonth();
+    renderCalendar();
+    renderResults();
+  }
+
+  function onAccessDenied() {
+    const blocked = document.getElementById('blocked-area');
+    blocked.classList.add('visible');
+    document.getElementById('blocked-email-display').textContent = currentUser.email;
+    document.getElementById('req-email').value = currentUser.email;
+    document.getElementById('req-name').value = currentUser.name;
+  }
+
+  function resetToSignIn() {
+    currentUser = null;
+    document.getElementById('blocked-area').classList.remove('visible');
+    document.getElementById('auth-area').style.display = '';
+    document.getElementById('req-name').value = '';
+    document.getElementById('req-message').value = '';
+  }
+
+  function sendAccessRequest() {
+    const name = document.getElementById('req-name').value.trim() || currentUser.name;
+    const email = currentUser.email;
+    const message = document.getElementById('req-message').value.trim();
+
+    const subject = encodeURIComponent(`Class Trip Access Request — ${name}`);
+    const body = encodeURIComponent(
+      `Hi!\n\n${name} (${email}) is requesting access to the class trip website.\n\n` +
+      (message ? `Their message: "${message}"\n\n` : '') +
+      `To grant access, add their email to the ALLOWED_EMAILS list in the HTML file.\n\nSent from the Class Trip site.`
+    );
+
+    window.open(`https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(ORGANISER_EMAIL)}&su=${subject}&body=${body}`, '_blank');
+    showToast('📩 Opening Gmail to send your request!');
+  }
+
+  function signOut() {
+    currentUser = null;
+    selectedDates = new Set();
+    document.getElementById('auth-area').style.display = '';
+    document.getElementById('user-bar').classList.remove('visible');
+    document.getElementById('cal-container').classList.remove('visible');
+    document.getElementById('blocked-area').classList.remove('visible');
+  }
+
+  // ─── CALENDAR ────────────────────────────────────
+  function changeMonth(delta) {
+    viewMonth += delta;
+    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const label = new Date(viewYear, viewMonth, 1).toLocaleString('default', { month: 'long', year: 'numeric' });
+    document.getElementById('month-label').textContent = label;
+
+    const grid = document.getElementById('cal-grid');
+    // Remove previous day cells (keep the 7 header cells)
+    while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+    const today = new Date(); today.setHours(0,0,0,0);
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const daysInPrev = new Date(viewYear, viewMonth, 0).getDate();
+
+    const all = loadStorage();
+    // Build date → count map
+    const counts = {};
+    for (const entry of Object.values(all)) {
+      for (const d of (entry.dates || [])) {
+        counts[d] = (counts[d] || 0) + 1;
+      }
+    }
+    const totalUsers = Object.keys(all).length || 1;
+
+    // Prev month padding
+    for (let i = 0; i < firstDay; i++) {
+      const d = daysInPrev - firstDay + i + 1;
+      addCell(grid, d, '', 'other-month', null, 0, totalUsers);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const cellDate = new Date(viewYear, viewMonth, d);
+      let cls = '';
+      if (cellDate.getTime() === today.getTime()) cls = 'today';
+      if (cellDate < today) cls = 'past';
+      addCell(grid, d, dateStr, cls, selectedDates.has(dateStr), counts[dateStr] || 0, totalUsers);
+    }
+
+    // Next month padding
+    const total = firstDay + daysInMonth;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let i = 1; i <= remaining; i++) {
+      addCell(grid, i, '', 'other-month', null, 0, totalUsers);
+    }
+  }
+
+  function addCell(grid, day, dateStr, extraClass, selected, count, total) {
+    const cell = document.createElement('div');
+    cell.className = 'day-cell ' + extraClass;
+    if (selected) cell.classList.add('selected');
+
+    cell.innerHTML = `<span>${day}</span>`;
+
+    if (count > 0 && dateStr) {
+      const dots = document.createElement('div');
+      dots.className = 'availability-dots';
+      const show = Math.min(count, 5);
+      for (let i = 0; i < show; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dots.appendChild(dot);
+      }
+      cell.appendChild(dots);
+      cell.title = `${count} classmate${count!==1?'s':''} available`;
+    }
+
+    if (dateStr && !extraClass.includes('other-month') && !extraClass.includes('past')) {
+      cell.onclick = () => toggleDate(dateStr);
+    }
+    grid.appendChild(cell);
+  }
+
+  function toggleDate(dateStr) {
+    if (selectedDates.has(dateStr)) selectedDates.delete(dateStr);
+    else selectedDates.add(dateStr);
+    renderCalendar();
+  }
+
+  function saveDates() {
+    const all = loadStorage();
+    all[currentUser.email] = {
+      name: currentUser.name,
+      dates: Array.from(selectedDates)
+    };
+    saveStorage(all);
+    renderCalendar();
+    renderResults();
+    showToast(`✅ Saved ${selectedDates.size} date${selectedDates.size!==1?'s':''}!`);
+  }
+
+  function renderResults() {
+    const all = loadStorage();
+    const counts = {};
+    const names = {};
+    for (const [email, entry] of Object.entries(all)) {
+      for (const d of (entry.dates || [])) {
+        counts[d] = (counts[d] || 0) + 1;
+        names[d] = names[d] || [];
+        names[d].push(entry.name);
+      }
+    }
+    const totalUsers = Object.keys(all).length;
+    const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0])).slice(0, 15);
+
+    const container = document.getElementById('results-list');
+    container.innerHTML = '';
+
+    if (sorted.length === 0) {
+      container.innerHTML = '<p style="text-align:center;color:#aaa;padding:20px">No dates submitted yet — be the first! 🚀</p>';
+      return;
+    }
+
+    for (const [dateStr, count] of sorted) {
+      const d = new Date(dateStr + 'T00:00:00');
+      const label = d.toLocaleDateString('default', { weekday:'short', month:'short', day:'numeric' });
+      const pct = Math.round((count / totalUsers) * 100);
+      const row = document.createElement('div');
+      row.className = 'result-row';
+      row.innerHTML = `
+        <span class="result-date">${label}</span>
+        <div class="result-count">
+          <div class="count-bar-wrap"><div class="count-bar" style="width:${pct}%"></div></div>
+          <span class="count-num">${count}/${totalUsers}</span>
+        </div>`;
+      row.title = (names[dateStr] || []).join(', ');
+      container.appendChild(row);
+    }
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
