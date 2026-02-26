@@ -36,9 +36,21 @@
   }
   .logo { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--coral); letter-spacing: 1px; }
   .logo span { color: var(--sky); }
-  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul { list-style: none; display: flex; gap: 28px; align-items: center; }
   nav ul a { text-decoration: none; font-weight: 700; color: var(--navy); transition: color .2s; }
   nav ul a:hover { color: var(--coral); }
+  #dashboard-nav-item { display: none; }
+  #dashboard-nav-item.visible { display: block; }
+  .dashboard-nav-btn {
+    background: var(--sun); color: var(--navy);
+    font-family: 'Fredoka One', cursive; font-size: 1rem;
+    padding: 6px 18px; border-radius: 999px;
+    border: 2px solid var(--navy);
+    text-decoration: none;
+    box-shadow: 2px 2px 0 var(--navy);
+    transition: transform .15s;
+  }
+  .dashboard-nav-btn:hover { transform: translate(-1px,-1px); color: var(--navy); }
 
   /* ─── HERO ─── */
   #hero {
@@ -47,90 +59,50 @@
     text-align: center; padding: 100px 24px 60px;
     position: relative; overflow: hidden;
   }
-
-  .blob {
-    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; animation: float 6s ease-in-out infinite;
-  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; animation: float 6s ease-in-out infinite; }
   .blob-1 { width: 400px; height: 400px; background: var(--sun); top: -100px; left: -100px; animation-delay: 0s; }
   .blob-2 { width: 350px; height: 350px; background: var(--coral); bottom: 0; right: -80px; animation-delay: 2s; }
   .blob-3 { width: 280px; height: 280px; background: var(--mint); top: 40%; left: 60%; animation-delay: 4s; }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
-  }
+  @keyframes float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
 
   .hero-badge {
-    display: inline-block;
-    background: var(--sun); color: var(--navy);
+    display: inline-block; background: var(--sun); color: var(--navy);
     font-weight: 800; font-size: .9rem; text-transform: uppercase; letter-spacing: 2px;
-    padding: 6px 20px; border-radius: 999px;
-    border: 2px solid var(--navy);
-    margin-bottom: 24px;
-    animation: pop .5s cubic-bezier(.175,.885,.32,1.275) both;
+    padding: 6px 20px; border-radius: 999px; border: 2px solid var(--navy);
+    margin-bottom: 24px; animation: pop .5s cubic-bezier(.175,.885,.32,1.275) both;
   }
-
   @keyframes pop { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
 
   h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 1.1;
-    color: var(--navy);
-    margin-bottom: 20px;
+    font-family: 'Fredoka One', cursive; font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.1; color: var(--navy); margin-bottom: 20px;
     animation: slideUp .6s .1s both;
   }
   h1 .highlight { color: var(--coral); }
   h1 .highlight2 { color: var(--sky); }
-
   @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-  .hero-sub {
-    font-size: 1.2rem; font-weight: 600; color: #555;
-    max-width: 520px; margin: 0 auto 40px;
-    animation: slideUp .6s .2s both;
-  }
-
-  .emoji-strip {
-    font-size: 2.5rem; letter-spacing: 12px; margin-bottom: 40px;
-    animation: slideUp .6s .3s both;
-  }
+  .hero-sub { font-size: 1.2rem; font-weight: 600; color: #555; max-width: 520px; margin: 0 auto 40px; animation: slideUp .6s .2s both; }
+  .emoji-strip { font-size: 2.5rem; letter-spacing: 12px; margin-bottom: 40px; animation: slideUp .6s .3s both; }
 
   .cta-btn {
-    display: inline-block;
-    background: var(--coral); color: var(--white);
+    display: inline-block; background: var(--coral); color: var(--white);
     font-family: 'Fredoka One', cursive; font-size: 1.3rem;
-    padding: 16px 40px; border-radius: 999px;
-    border: 3px solid var(--navy);
-    text-decoration: none;
-    box-shadow: 4px 4px 0 var(--navy);
-    transition: transform .15s, box-shadow .15s;
-    animation: slideUp .6s .4s both;
+    padding: 16px 40px; border-radius: 999px; border: 3px solid var(--navy);
+    text-decoration: none; box-shadow: 4px 4px 0 var(--navy);
+    transition: transform .15s, box-shadow .15s; animation: slideUp .6s .4s both;
   }
   .cta-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--navy); }
   .cta-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--navy); }
 
   /* ─── INFO CARDS ─── */
-  #plan {
-    padding: 80px 40px;
-    max-width: 1100px; margin: 0 auto;
-  }
-  .section-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 2.5rem; text-align: center; margin-bottom: 48px;
-    color: var(--navy);
-  }
+  #plan { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-title { font-family: 'Fredoka One', cursive; font-size: 2.5rem; text-align: center; margin-bottom: 48px; color: var(--navy); }
   .section-title span { color: var(--coral); }
-
-  .cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
-  }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
   .card {
-    background: var(--white);
-    border: 2.5px solid var(--navy); border-radius: 20px;
-    padding: 32px 28px;
-    box-shadow: 5px 5px 0 var(--navy);
-    transition: transform .2s, box-shadow .2s;
+    background: var(--white); border: 2.5px solid var(--navy); border-radius: 20px;
+    padding: 32px 28px; box-shadow: 5px 5px 0 var(--navy); transition: transform .2s, box-shadow .2s;
   }
   .card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--navy); }
   .card-icon { font-size: 2.5rem; margin-bottom: 12px; }
@@ -141,48 +113,34 @@
   .card.accent-3 { background: #FFE8E8; }
 
   /* ─── CALENDAR SECTION ─── */
-  #calendar {
-    padding: 80px 40px;
-    background: var(--white);
-    border-top: 3px dashed var(--sun);
-    border-bottom: 3px dashed var(--sun);
-  }
+  #calendar { padding: 80px 40px; background: var(--white); border-top: 3px dashed var(--sun); border-bottom: 3px dashed var(--sun); }
   .cal-wrap { max-width: 900px; margin: 0 auto; }
 
-  /* ─── GOOGLE SIGN-IN ─── */
+  /* ─── AUTH ─── */
   #auth-area {
-    text-align: center; padding: 40px 20px;
-    background: var(--peach); border-radius: 20px;
-    border: 2.5px solid var(--navy);
-    box-shadow: 5px 5px 0 var(--navy);
-    margin-bottom: 32px;
+    text-align: center; padding: 40px 20px; background: var(--peach); border-radius: 20px;
+    border: 2.5px solid var(--navy); box-shadow: 5px 5px 0 var(--navy); margin-bottom: 32px;
   }
   #auth-area p { font-weight: 700; margin-bottom: 20px; font-size: 1.1rem; }
-
   .google-btn {
     display: inline-flex; align-items: center; gap: 12px;
-    background: var(--white); border: 2.5px solid var(--navy);
-    border-radius: 999px; padding: 12px 28px;
-    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
-    cursor: pointer; box-shadow: 4px 4px 0 var(--navy);
-    transition: transform .15s, box-shadow .15s;
+    background: var(--white); border: 2.5px solid var(--navy); border-radius: 999px;
+    padding: 12px 28px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; box-shadow: 4px 4px 0 var(--navy); transition: transform .15s, box-shadow .15s;
   }
   .google-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--navy); }
   .google-btn svg { width: 22px; height: 22px; }
 
   #user-bar {
     display: none; justify-content: space-between; align-items: center;
-    background: var(--peach); border-radius: 16px;
-    border: 2.5px solid var(--navy); padding: 14px 24px;
-    margin-bottom: 24px;
-    box-shadow: 4px 4px 0 var(--navy);
+    background: var(--peach); border-radius: 16px; border: 2.5px solid var(--navy);
+    padding: 14px 24px; margin-bottom: 24px; box-shadow: 4px 4px 0 var(--navy);
   }
   #user-bar.visible { display: flex; }
   .user-info { display: flex; align-items: center; gap: 12px; }
   .user-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--coral); border: 2px solid var(--navy);
-    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%; background: var(--coral);
+    border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center;
     font-weight: 800; color: white; font-size: 1.1rem;
   }
   #user-name { font-weight: 800; }
@@ -196,12 +154,9 @@
 
   /* ─── BLOCKED SCREEN ─── */
   #blocked-area {
-    display: none;
-    text-align: center; padding: 48px 32px;
-    background: #FFF5F5; border-radius: 20px;
-    border: 2.5px solid var(--coral);
-    box-shadow: 5px 5px 0 var(--coral);
-    margin-bottom: 32px;
+    display: none; text-align: center; padding: 48px 32px;
+    background: #FFF5F5; border-radius: 20px; border: 2.5px solid var(--coral);
+    box-shadow: 5px 5px 0 var(--coral); margin-bottom: 32px;
     animation: pop .4s cubic-bezier(.175,.885,.32,1.275) both;
   }
   #blocked-area.visible { display: block; }
@@ -213,86 +168,55 @@
     border-radius: 10px; padding: 6px 18px; font-weight: 800; font-size: .95rem;
     color: var(--coral); margin-bottom: 20px;
   }
-
   .request-form { text-align: left; max-width: 420px; margin: 0 auto; }
   .request-form label { display: block; font-weight: 800; margin-bottom: 6px; font-size: .9rem; }
   .request-form input, .request-form textarea {
-    width: 100%; padding: 12px 16px; border-radius: 12px;
-    border: 2.5px solid var(--navy); font-family: 'Nunito', sans-serif;
-    font-size: .95rem; margin-bottom: 16px; background: white;
+    width: 100%; padding: 12px 16px; border-radius: 12px; border: 2.5px solid var(--navy);
+    font-family: 'Nunito', sans-serif; font-size: .95rem; margin-bottom: 16px; background: white;
     transition: border-color .2s;
   }
   .request-form input:focus, .request-form textarea:focus { outline: none; border-color: var(--coral); }
   .request-form textarea { resize: vertical; min-height: 80px; }
   .request-btn {
-    width: 100%; background: var(--coral); color: white;
-    font-family: 'Fredoka One', cursive; font-size: 1.2rem;
-    padding: 14px; border-radius: 999px; border: 2.5px solid var(--navy);
-    cursor: pointer; box-shadow: 4px 4px 0 var(--navy);
-    transition: transform .15s, box-shadow .15s;
+    width: 100%; background: var(--coral); color: white; font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem; padding: 14px; border-radius: 999px; border: 2.5px solid var(--navy);
+    cursor: pointer; box-shadow: 4px 4px 0 var(--navy); transition: transform .15s, box-shadow .15s;
   }
   .request-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--navy); }
-  .back-link {
-    display: inline-block; margin-top: 20px; font-weight: 700; color: #999;
-    cursor: pointer; font-size: .9rem; text-decoration: underline;
-  }
+  .back-link { display: inline-block; margin-top: 20px; font-weight: 700; color: #999; cursor: pointer; font-size: .9rem; text-decoration: underline; }
   .back-link:hover { color: var(--navy); }
 
   /* ─── CALENDAR GRID ─── */
   #cal-container { display: none; }
   #cal-container.visible { display: block; }
-
-  .cal-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 16px;
-  }
+  .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
   .cal-nav {
-    background: var(--sky); color: white; border: 2px solid var(--navy);
-    border-radius: 999px; padding: 8px 18px;
-    font-family: 'Fredoka One', cursive; font-size: 1.1rem;
-    cursor: pointer; box-shadow: 3px 3px 0 var(--navy);
-    transition: transform .15s;
+    background: var(--sky); color: white; border: 2px solid var(--navy); border-radius: 999px;
+    padding: 8px 18px; font-family: 'Fredoka One', cursive; font-size: 1.1rem;
+    cursor: pointer; box-shadow: 3px 3px 0 var(--navy); transition: transform .15s;
   }
   .cal-nav:hover { transform: scale(1.05); }
   #month-label { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--navy); }
-
-  .cal-grid {
-    display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 24px;
-  }
-  .day-name {
-    text-align: center; font-weight: 800; font-size: .8rem; text-transform: uppercase;
-    color: var(--sky); padding: 8px 0;
-  }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 24px; }
+  .day-name { text-align: center; font-weight: 800; font-size: .8rem; text-transform: uppercase; color: var(--sky); padding: 8px 0; }
   .day-cell {
     aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    border-radius: 12px; border: 2px solid transparent;
-    cursor: pointer; transition: all .15s; font-weight: 700; position: relative;
-    font-size: .95rem;
+    border-radius: 12px; border: 2px solid transparent; cursor: pointer;
+    transition: all .15s; font-weight: 700; position: relative; font-size: .95rem;
   }
   .day-cell.other-month { opacity: .3; cursor: default; }
   .day-cell.today { border-color: var(--coral); }
   .day-cell:not(.other-month):not(.past):hover { background: var(--sun); border-color: var(--navy); transform: scale(1.08); }
   .day-cell.past { opacity: .4; cursor: not-allowed; }
-  .day-cell.selected {
-    background: var(--mint); border-color: var(--navy);
-    box-shadow: 3px 3px 0 var(--navy);
-  }
-  .day-cell.selected::after {
-    content: '✓'; font-size: .7rem; position: absolute; bottom: 4px; color: var(--navy); font-weight: 800;
-  }
-  .availability-dots {
-    display: flex; gap: 2px; margin-top: 2px; flex-wrap: wrap; justify-content: center;
-  }
+  .day-cell.selected { background: var(--mint); border-color: var(--navy); box-shadow: 3px 3px 0 var(--navy); }
+  .day-cell.selected::after { content: '✓'; font-size: .7rem; position: absolute; bottom: 4px; color: var(--navy); font-weight: 800; }
+  .availability-dots { display: flex; gap: 2px; margin-top: 2px; flex-wrap: wrap; justify-content: center; }
   .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
-
   .save-btn {
-    display: block; width: 100%;
-    background: var(--mint); color: var(--navy);
-    font-family: 'Fredoka One', cursive; font-size: 1.3rem;
-    padding: 16px; border-radius: 16px; border: 2.5px solid var(--navy);
-    cursor: pointer; box-shadow: 4px 4px 0 var(--navy);
-    transition: transform .15s, box-shadow .15s;
-    margin-bottom: 32px;
+    display: block; width: 100%; background: var(--mint); color: var(--navy);
+    font-family: 'Fredoka One', cursive; font-size: 1.3rem; padding: 16px;
+    border-radius: 16px; border: 2.5px solid var(--navy); cursor: pointer;
+    box-shadow: 4px 4px 0 var(--navy); transition: transform .15s, box-shadow .15s; margin-bottom: 32px;
   }
   .save-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--navy); }
 
@@ -301,31 +225,75 @@
   .results-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; margin-bottom: 16px; color: var(--navy); }
   .result-row {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 18px; background: var(--peach);
-    border: 2px solid var(--navy); border-radius: 12px; margin-bottom: 8px;
+    padding: 12px 18px; background: var(--peach); border: 2px solid var(--navy);
+    border-radius: 12px; margin-bottom: 8px;
   }
   .result-date { font-weight: 800; }
-  .result-count {
-    display: flex; align-items: center; gap: 8px;
-  }
+  .result-count { display: flex; align-items: center; gap: 8px; }
   .count-bar-wrap { width: 120px; height: 10px; background: #ddd; border-radius: 999px; overflow: hidden; }
   .count-bar { height: 100%; background: var(--coral); border-radius: 999px; transition: width .4s; }
   .count-num { font-weight: 800; font-size: .9rem; color: var(--coral); min-width: 40px; text-align: right; }
 
-  /* ─── FOOTER ─── */
-  footer {
-    text-align: center; padding: 40px;
-    font-weight: 700; color: #888; font-size: .9rem;
+  /* ─── ORGANISER DASHBOARD ─── */
+  #dashboard {
+    padding: 80px 40px;
+    background: var(--navy);
+    display: none;
   }
+  #dashboard.visible { display: block; }
+  #dashboard .section-title { color: var(--sun); }
+  #dashboard .section-title span { color: var(--mint); }
+
+  .dash-stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; margin-bottom: 48px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 20px; padding: 28px 24px; text-align: center;
+  }
+  .stat-number { font-family: 'Fredoka One', cursive; font-size: 3rem; color: var(--sun); line-height: 1; }
+  .stat-label { color: rgba(255,255,255,0.7); font-weight: 700; font-size: .9rem; margin-top: 6px; }
+
+  .dash-section-title { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--sun); margin-bottom: 16px; }
+
+  .dash-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+  .dash-table th {
+    text-align: left; padding: 12px 16px; background: rgba(255,255,255,0.1);
+    color: var(--mint); font-size: .85rem; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .dash-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); font-weight: 600; }
+  .dash-table tr:hover td { background: rgba(255,255,255,0.05); }
+  .dash-table .top-date { color: var(--sun); font-family: 'Fredoka One', cursive; font-size: 1.1rem; }
+  .name-chip {
+    display: inline-block; background: rgba(6,214,160,0.2); color: var(--mint);
+    border-radius: 999px; padding: 3px 10px; font-size: .8rem; margin: 2px;
+  }
+
+  .not-responded-list { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+  .not-responded-chip {
+    background: rgba(255,107,107,0.2); border: 1px solid rgba(255,107,107,0.4);
+    color: #ff9999; border-radius: 999px; padding: 6px 16px; font-size: .85rem; font-weight: 700;
+  }
+
+  .all-responded { color: var(--mint); font-weight: 700; font-size: 1.1rem; }
+
+  /* ─── FOOTER ─── */
+  footer { text-align: center; padding: 40px; font-weight: 700; color: #888; font-size: .9rem; }
 
   .toast {
     position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
     background: var(--navy); color: white; border-radius: 999px;
     padding: 14px 32px; font-weight: 700; font-size: 1rem;
-    transition: transform .3s cubic-bezier(.175,.885,.32,1.275);
-    z-index: 999;
+    transition: transform .3s cubic-bezier(.175,.885,.32,1.275); z-index: 999;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .loading-spinner {
+    text-align: center; padding: 40px; font-size: 2rem;
+    animation: spin 1s linear infinite; display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -337,6 +305,7 @@
     <li><a href="#hero">Home</a></li>
     <li><a href="#plan">The Plan</a></li>
     <li><a href="#calendar">Availability</a></li>
+    <li id="dashboard-nav-item"><a href="#dashboard" class="dashboard-nav-btn">🗂️ Dashboard</a></li>
   </ul>
 </nav>
 
@@ -384,7 +353,6 @@
   <div class="cal-wrap">
     <h2 class="section-title">Your <span>Availability</span> 📅</h2>
 
-    <!-- Auth area (shown when logged out) -->
     <div id="auth-area">
       <p>Sign in with your school Gmail to mark your available dates 👇</p>
       <button class="google-btn" id="google-signin-btn">
@@ -393,19 +361,7 @@
       </button>
     </div>
 
-    <!-- User bar (shown when logged in) -->
-    <div id="user-bar">
-      <div class="user-info">
-        <div class="user-avatar" id="avatar-initials">?</div>
-        <div>
-          <div id="user-name">Loading...</div>
-          <div id="user-email"></div>
-        </div>
-      </div>
-      <button class="signout-btn" onclick="signOut()">Sign out</button>
-    </div>
-
-    <!-- Blocked screen (shown when email not on allowlist) -->
+    <!-- Blocked screen -->
     <div id="blocked-area">
       <div class="blocked-icon">🚫</div>
       <h3>Access Restricted</h3>
@@ -423,7 +379,19 @@
       <span class="back-link" onclick="resetToSignIn()">← Try a different account</span>
     </div>
 
-    <!-- Calendar (shown when logged in) -->
+    <!-- User bar -->
+    <div id="user-bar">
+      <div class="user-info">
+        <div class="user-avatar" id="avatar-initials">?</div>
+        <div>
+          <div id="user-name">Loading...</div>
+          <div id="user-email"></div>
+        </div>
+      </div>
+      <button class="signout-btn" onclick="signOut()">Sign out</button>
+    </div>
+
+    <!-- Calendar -->
     <div id="cal-container">
       <div class="cal-header">
         <button class="cal-nav" onclick="changeMonth(-1)">← Prev</button>
@@ -440,106 +408,109 @@
         <div class="day-name">Sat</div>
       </div>
       <button class="save-btn" onclick="saveDates()">💾 Save My Availability</button>
-
-      <!-- Results -->
       <div id="results-area">
         <div class="results-title">📊 Class Availability Overview</div>
-        <div id="results-list"></div>
+        <div id="results-list"><div style="text-align:center;padding:20px">⏳ Loading...</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  Made with ❤️ for our class trip &nbsp;·&nbsp; ClassTrip 2026
-</footer>
+<!-- ORGANISER DASHBOARD -->
+<section id="dashboard">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h2 class="section-title">🗂️ Organiser <span>Dashboard</span></h2>
+    <div class="dash-stats">
+      <div class="stat-card">
+        <div class="stat-number" id="stat-responded">—</div>
+        <div class="stat-label">Responded</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-total">—</div>
+        <div class="stat-label">Total Invited</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-top-count">—</div>
+        <div class="stat-label">Best Date Overlap</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-top-date">—</div>
+        <div class="stat-label">Top Date</div>
+      </div>
+    </div>
 
+    <div class="dash-section-title">🏆 Top Dates (with who's available)</div>
+    <table class="dash-table" id="dash-dates-table">
+      <thead><tr><th>Date</th><th>Available</th><th>Who</th></tr></thead>
+      <tbody id="dash-dates-body"></tbody>
+    </table>
+
+    <div class="dash-section-title">⏳ Haven't responded yet</div>
+    <div class="not-responded-list" id="not-responded-list"></div>
+  </div>
+</section>
+
+<footer>Made with ❤️ for our class trip &nbsp;·&nbsp; ClassTrip 2025</footer>
 <div class="toast" id="toast"></div>
 
-<!-- ══════════════════════════════════════════════════
-     GOOGLE SIGN-IN SETUP INSTRUCTIONS
-     ══════════════════════════════════════════════════
-     1. Go to https://console.cloud.google.com
-     2. Create a project → APIs & Services → Credentials
-     3. Create OAuth 2.0 Client ID (Web Application)
-     4. Add your site URL to Authorized JavaScript origins
-     5. Replace YOUR_GOOGLE_CLIENT_ID below with your actual Client ID
-     ══════════════════════════════════════════════════ -->
-<script src="https://accounts.google.com/gsi/client" async></script>
-<script>
+<!-- Firebase SDKs -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
   // ═══════════════════════════════════════════════════════
-  //  ✏️  ORGANISER CONFIG — Edit these two sections!
+  //  ✏️  ORGANISER CONFIG
   // ═══════════════════════════════════════════════════════
 
-  // 1. Your Google OAuth Client ID (see setup instructions below)
-  const GOOGLE_CLIENT_ID = '931437907403-t2gcnjljo6ccv7tvp432ilj2khh1anrl.apps.googleusercontent.com';
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // ← paste your OAuth Client ID here
 
-  // 2. Allowlist — add every classmate's Gmail here (lowercase)
   const ALLOWED_EMAILS = [
-    'abed.shehada@learningplanetinstitute.org',
-    'anja.stijepovic@learningplanetinstitute.org',
-    'charles.ouallet@learningplanetinstitute.org',
-    'de.jicuomu@learningplanetinstitute.org',
-    'derek.wilson@learningplanetinstitute.org',
-    'donghan.yan@learningplanetinstitute.org',
-    'elizaveta.zanozina@learningplanetinstitute.org',
-    'elsa.k.donovan@learningplanetinstitute.org',
-    'giullianna.borgeslopes@learningplanetinstitute.org',
-    'hainam.pham@learningplanetinstitute.org',
-    'haruka.kobayashi@learningplanetinstitute.org',
-    'hira.shehzadi@learningplanetinstitute.org',
-    'jacqueline.landi@learningplanetinstitute.org',
-    'janita.naz@learningplanetinstitute.org',
-    'juyeon.lee@learningplanetinstitute.org',
-    'maria.petropoulos@learningplanetinstitute.org',
-    'mariaangelica.meza@learningplanetinstitute.org',
-    'minh-son.nguyen@learningplanetinstitute.org',
-    'zoe.zulu@learningplanetinstitute.org',
-    'm-uzair.qadir@learningplanetinstitute.org',
-    'olia.mahjabin@learningplanetinstitute.org',
-    'riugabriel.rodriguez@learningplanetinstitute.org',
-    'rui.mao@learningplanetinstitute.org',
-    'sanil.pandhare@learningplanetinstitute.org',
-    'suleyman.hanyyev@learningplanetinstitute.org',
-    'yaqing.huo@learningplanetinstitute.org',
-    'zeeshan.ahmed@learningplanetinstitute.org',
-    'zoja.savic@learningplanetinstitute.org',
-    
+    // ← Add your classmates' Gmail addresses here (lowercase)
+    // 'alice@gmail.com',
+    // 'bob@gmail.com',
   ];
 
-  // 3. Your own Gmail — access requests will be sent here
   const ORGANISER_EMAIL = 'leo.villemin@learningplanetinstitute.org';
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyBk0WnxBi0xeMyC7yrkkIR4gb776fglYH0",
+    authDomain: "class-trip-488614.firebaseapp.com",
+    projectId: "class-trip-488614",
+    storageBucket: "class-trip-488614.firebasestorage.app",
+    messagingSenderId: "931437907403",
+    appId: "1:931437907403:web:8a33253f0ebd7561c7ba4e"
+  };
+
   // ═══════════════════════════════════════════════════════
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Make db and functions available globally
+  window._db = db;
+  window._firestoreFns = { doc, setDoc, getDoc, collection, getDocs };
 
   let currentUser = null;
   let selectedDates = new Set();
   let viewYear, viewMonth;
+  let allData = {}; // cached Firestore data
 
   function isAllowed(email) {
-    return ALLOWED_EMAILS.map(e => e.toLowerCase()).includes(email.toLowerCase());
+    return email.toLowerCase() === ORGANISER_EMAIL.toLowerCase() ||
+           ALLOWED_EMAILS.map(e => e.toLowerCase()).includes(email.toLowerCase());
   }
 
-  // All responses stored in localStorage (key: classAvailability)
-  function loadStorage() {
-    try { return JSON.parse(localStorage.getItem('classAvailability') || '{}'); } catch { return {}; }
-  }
-  function saveStorage(data) { localStorage.setItem('classAvailability', JSON.stringify(data)); }
-
-  // ─── MOCK SIGN IN (demo mode — works without OAuth setup) ───
-  function mockSignIn() {
-    const email = prompt("Demo mode: Enter a Gmail to test with.\n\nTry an allowed email like: alice@gmail.com\nOr an unknown one like: unknown@gmail.com", "alice@gmail.com");
-    if (!email) return;
-    const name = email.split('@')[0].replace(/\./g,' ').replace(/\b\w/g, c => c.toUpperCase());
-    currentUser = { name, email: email.toLowerCase() };
-    afterSignIn();
+  function isOrganiser(email) {
+    return email.toLowerCase() === ORGANISER_EMAIL.toLowerCase();
   }
 
-  // ─── REAL GOOGLE SIGN IN ───
-  // Uncomment once you have your Client ID:
-
+  // ─── GOOGLE SIGN IN ───
   function initGoogleSignIn() {
-    if (GOOGLE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID') return;
+    if (GOOGLE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID') {
+      // Demo mode fallback
+      document.getElementById('google-signin-btn').onclick = mockSignIn;
+      return;
+    }
     google.accounts.id.initialize({
       client_id: GOOGLE_CLIENT_ID,
       callback: (response) => {
@@ -549,25 +520,33 @@
       }
     });
     google.accounts.id.renderButton(
-      document.querySelector('.google-btn'),
+      document.getElementById('google-signin-btn'),
       { theme: 'outline', size: 'large', shape: 'pill' }
     );
   }
+
   function parseJwt(token) { return JSON.parse(atob(token.split('.')[1])); }
-  window.onload = initGoogleSignIn;
 
+  function mockSignIn() {
+    const email = prompt("Demo mode — enter an email to test:", ORGANISER_EMAIL);
+    if (!email) return;
+    const name = email.split('@')[0].replace(/\./g,' ').replace(/\b\w/g, c => c.toUpperCase());
+    currentUser = { name, email: email.toLowerCase() };
+    afterSignIn();
+  }
 
-  // ─── AFTER GOOGLE RETURNS — check allowlist ───
-  function afterSignIn() {
+  window.mockSignIn = mockSignIn;
+
+  async function afterSignIn() {
     document.getElementById('auth-area').style.display = 'none';
     if (isAllowed(currentUser.email)) {
-      onAccessGranted();
+      await onAccessGranted();
     } else {
       onAccessDenied();
     }
   }
 
-  function onAccessGranted() {
+  async function onAccessGranted() {
     document.getElementById('blocked-area').classList.remove('visible');
     document.getElementById('user-bar').classList.add('visible');
     document.getElementById('cal-container').classList.add('visible');
@@ -576,70 +555,109 @@
     document.getElementById('avatar-initials').textContent =
       currentUser.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
 
-    const all = loadStorage();
-    selectedDates = new Set(all[currentUser.email]?.dates || []);
+    // Show dashboard tab for organiser
+    if (isOrganiser(currentUser.email)) {
+      document.getElementById('dashboard-nav-item').classList.add('visible');
+      document.getElementById('dashboard').classList.add('visible');
+    }
+
+    // Load from Firestore
+    await loadAllData();
+    const userDoc = allData[currentUser.email];
+    selectedDates = new Set(userDoc?.dates || []);
+
     const now = new Date();
     viewYear = now.getFullYear();
     viewMonth = now.getMonth();
     renderCalendar();
     renderResults();
+    if (isOrganiser(currentUser.email)) renderDashboard();
   }
 
   function onAccessDenied() {
-    const blocked = document.getElementById('blocked-area');
-    blocked.classList.add('visible');
+    document.getElementById('blocked-area').classList.add('visible');
     document.getElementById('blocked-email-display').textContent = currentUser.email;
     document.getElementById('req-email').value = currentUser.email;
     document.getElementById('req-name').value = currentUser.name;
   }
 
-  function resetToSignIn() {
+  window.resetToSignIn = function() {
     currentUser = null;
     document.getElementById('blocked-area').classList.remove('visible');
     document.getElementById('auth-area').style.display = '';
     document.getElementById('req-name').value = '';
     document.getElementById('req-message').value = '';
-  }
+  };
 
-  function sendAccessRequest() {
+  window.sendAccessRequest = function() {
     const name = document.getElementById('req-name').value.trim() || currentUser.name;
     const email = currentUser.email;
     const message = document.getElementById('req-message').value.trim();
-
     const subject = encodeURIComponent(`Class Trip Access Request — ${name}`);
     const body = encodeURIComponent(
       `Hi!\n\n${name} (${email}) is requesting access to the class trip website.\n\n` +
       (message ? `Their message: "${message}"\n\n` : '') +
-      `To grant access, add their email to the ALLOWED_EMAILS list in the HTML file.\n\nSent from the Class Trip site.`
+      `To grant access, add their email to the ALLOWED_EMAILS list in index.html.\n\nSent from the Class Trip site.`
     );
-
     window.open(`https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(ORGANISER_EMAIL)}&su=${subject}&body=${body}`, '_blank');
     showToast('📩 Opening Gmail to send your request!');
-  }
+  };
 
-  function signOut() {
+  window.signOut = function() {
     currentUser = null;
     selectedDates = new Set();
+    allData = {};
     document.getElementById('auth-area').style.display = '';
     document.getElementById('user-bar').classList.remove('visible');
     document.getElementById('cal-container').classList.remove('visible');
     document.getElementById('blocked-area').classList.remove('visible');
+    document.getElementById('dashboard-nav-item').classList.remove('visible');
+    document.getElementById('dashboard').classList.remove('visible');
+  };
+
+  // ─── FIRESTORE ───
+  async function loadAllData() {
+    try {
+      const { collection, getDocs } = window._firestoreFns;
+      const snapshot = await getDocs(collection(db, 'availability'));
+      allData = {};
+      snapshot.forEach(d => { allData[d.id] = d.data(); });
+    } catch(e) {
+      console.error('Firestore read error:', e);
+      allData = {};
+    }
   }
 
-  // ─── CALENDAR ────────────────────────────────────
-  function changeMonth(delta) {
+  async function saveToFirestore() {
+    try {
+      const { doc, setDoc } = window._firestoreFns;
+      const emailKey = currentUser.email.replace(/\./g, '_').replace(/@/g, '_at_');
+      await setDoc(doc(db, 'availability', emailKey), {
+        name: currentUser.name,
+        email: currentUser.email,
+        dates: Array.from(selectedDates),
+        updatedAt: new Date().toISOString()
+      });
+      allData[emailKey] = { name: currentUser.name, email: currentUser.email, dates: Array.from(selectedDates) };
+      return true;
+    } catch(e) {
+      console.error('Firestore write error:', e);
+      return false;
+    }
+  }
+
+  // ─── CALENDAR ───
+  window.changeMonth = function(delta) {
     viewMonth += delta;
     if (viewMonth > 11) { viewMonth = 0; viewYear++; }
     if (viewMonth < 0) { viewMonth = 11; viewYear--; }
     renderCalendar();
-  }
+  };
 
   function renderCalendar() {
     const label = new Date(viewYear, viewMonth, 1).toLocaleString('default', { month: 'long', year: 'numeric' });
     document.getElementById('month-label').textContent = label;
-
     const grid = document.getElementById('cal-grid');
-    // Remove previous day cells (keep the 7 header cells)
     while (grid.children.length > 7) grid.removeChild(grid.lastChild);
 
     const today = new Date(); today.setHours(0,0,0,0);
@@ -647,22 +665,17 @@
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
     const daysInPrev = new Date(viewYear, viewMonth, 0).getDate();
 
-    const all = loadStorage();
-    // Build date → count map
     const counts = {};
-    for (const entry of Object.values(all)) {
+    for (const entry of Object.values(allData)) {
       for (const d of (entry.dates || [])) {
         counts[d] = (counts[d] || 0) + 1;
       }
     }
-    const totalUsers = Object.keys(all).length || 1;
+    const totalUsers = Object.keys(allData).length || 1;
 
-    // Prev month padding
     for (let i = 0; i < firstDay; i++) {
-      const d = daysInPrev - firstDay + i + 1;
-      addCell(grid, d, '', 'other-month', null, 0, totalUsers);
+      addCell(grid, daysInPrev - firstDay + i + 1, '', 'other-month', null, 0, totalUsers);
     }
-
     for (let d = 1; d <= daysInMonth; d++) {
       const dateStr = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
       const cellDate = new Date(viewYear, viewMonth, d);
@@ -671,8 +684,6 @@
       if (cellDate < today) cls = 'past';
       addCell(grid, d, dateStr, cls, selectedDates.has(dateStr), counts[dateStr] || 0, totalUsers);
     }
-
-    // Next month padding
     const total = firstDay + daysInMonth;
     const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
     for (let i = 1; i <= remaining; i++) {
@@ -684,72 +695,65 @@
     const cell = document.createElement('div');
     cell.className = 'day-cell ' + extraClass;
     if (selected) cell.classList.add('selected');
-
     cell.innerHTML = `<span>${day}</span>`;
-
     if (count > 0 && dateStr) {
       const dots = document.createElement('div');
       dots.className = 'availability-dots';
-      const show = Math.min(count, 5);
-      for (let i = 0; i < show; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot';
-        dots.appendChild(dot);
+      for (let i = 0; i < Math.min(count, 5); i++) {
+        const dot = document.createElement('div'); dot.className = 'dot'; dots.appendChild(dot);
       }
       cell.appendChild(dots);
       cell.title = `${count} classmate${count!==1?'s':''} available`;
     }
-
     if (dateStr && !extraClass.includes('other-month') && !extraClass.includes('past')) {
-      cell.onclick = () => toggleDate(dateStr);
+      cell.onclick = () => {
+        if (selectedDates.has(dateStr)) selectedDates.delete(dateStr);
+        else selectedDates.add(dateStr);
+        renderCalendar();
+      };
     }
     grid.appendChild(cell);
   }
 
-  function toggleDate(dateStr) {
-    if (selectedDates.has(dateStr)) selectedDates.delete(dateStr);
-    else selectedDates.add(dateStr);
-    renderCalendar();
-  }
-
-  function saveDates() {
-    const all = loadStorage();
-    all[currentUser.email] = {
-      name: currentUser.name,
-      dates: Array.from(selectedDates)
-    };
-    saveStorage(all);
-    renderCalendar();
-    renderResults();
-    showToast(`✅ Saved ${selectedDates.size} date${selectedDates.size!==1?'s':''}!`);
-  }
+  window.saveDates = async function() {
+    const btn = document.querySelector('.save-btn');
+    btn.textContent = '⏳ Saving...';
+    btn.disabled = true;
+    const ok = await saveToFirestore();
+    btn.textContent = '💾 Save My Availability';
+    btn.disabled = false;
+    if (ok) {
+      renderCalendar();
+      renderResults();
+      if (isOrganiser(currentUser.email)) renderDashboard();
+      showToast(`✅ Saved ${selectedDates.size} date${selectedDates.size!==1?'s':''}!`);
+    } else {
+      showToast('❌ Save failed — check your connection');
+    }
+  };
 
   function renderResults() {
-    const all = loadStorage();
     const counts = {};
     const names = {};
-    for (const [email, entry] of Object.entries(all)) {
+    for (const entry of Object.values(allData)) {
       for (const d of (entry.dates || [])) {
         counts[d] = (counts[d] || 0) + 1;
         names[d] = names[d] || [];
         names[d].push(entry.name);
       }
     }
-    const totalUsers = Object.keys(all).length;
+    const totalUsers = Object.keys(allData).length;
     const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0])).slice(0, 15);
-
     const container = document.getElementById('results-list');
     container.innerHTML = '';
-
     if (sorted.length === 0) {
       container.innerHTML = '<p style="text-align:center;color:#aaa;padding:20px">No dates submitted yet — be the first! 🚀</p>';
       return;
     }
-
     for (const [dateStr, count] of sorted) {
       const d = new Date(dateStr + 'T00:00:00');
       const label = d.toLocaleDateString('default', { weekday:'short', month:'short', day:'numeric' });
-      const pct = Math.round((count / totalUsers) * 100);
+      const pct = Math.round((count / (totalUsers || 1)) * 100);
       const row = document.createElement('div');
       row.className = 'result-row';
       row.innerHTML = `
@@ -763,6 +767,70 @@
     }
   }
 
+  // ─── ORGANISER DASHBOARD ───
+  function renderDashboard() {
+    const entries = Object.values(allData);
+    const responded = entries.length;
+    const total = ALLOWED_EMAILS.length + 1; // +1 for organiser
+
+    // Build date counts with names
+    const counts = {};
+    const namesByDate = {};
+    for (const entry of entries) {
+      for (const d of (entry.dates || [])) {
+        counts[d] = (counts[d] || 0) + 1;
+        namesByDate[d] = namesByDate[d] || [];
+        namesByDate[d].push(entry.name);
+      }
+    }
+
+    const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0]));
+    const topDate = sorted[0];
+
+    // Stats
+    document.getElementById('stat-responded').textContent = responded;
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-top-count').textContent = topDate ? topDate[1] : '—';
+    if (topDate) {
+      const d = new Date(topDate[0] + 'T00:00:00');
+      document.getElementById('stat-top-date').textContent = d.toLocaleDateString('default', { month:'short', day:'numeric' });
+    } else {
+      document.getElementById('stat-top-date').textContent = '—';
+    }
+
+    // Top dates table
+    const tbody = document.getElementById('dash-dates-body');
+    tbody.innerHTML = '';
+    for (const [dateStr, count] of sorted.slice(0, 10)) {
+      const d = new Date(dateStr + 'T00:00:00');
+      const label = d.toLocaleDateString('default', { weekday:'short', month:'long', day:'numeric' });
+      const names = (namesByDate[dateStr] || []).map(n => `<span class="name-chip">${n}</span>`).join('');
+      const pct = Math.round((count / (total || 1)) * 100);
+      tbody.innerHTML += `<tr>
+        <td class="top-date">${label}</td>
+        <td>${count}/${total} <span style="color:var(--mint);font-size:.85rem">(${pct}%)</span></td>
+        <td>${names}</td>
+      </tr>`;
+    }
+    if (sorted.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" style="color:rgba(255,255,255,0.4);text-align:center;padding:20px">No responses yet</td></tr>';
+    }
+
+    // Who hasn't responded
+    const respondedEmails = new Set(entries.map(e => e.email?.toLowerCase()));
+    const allInvited = [...ALLOWED_EMAILS.map(e=>e.toLowerCase()), ORGANISER_EMAIL.toLowerCase()];
+    const notResponded = allInvited.filter(e => !respondedEmails.has(e));
+    const container = document.getElementById('not-responded-list');
+    container.innerHTML = '';
+    if (notResponded.length === 0) {
+      container.innerHTML = '<p class="all-responded">🎉 Everyone has responded!</p>';
+    } else {
+      for (const email of notResponded) {
+        container.innerHTML += `<span class="not-responded-chip">${email}</span>`;
+      }
+    }
+  }
+
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -770,13 +838,17 @@
     setTimeout(() => t.classList.remove('show'), 3000);
   }
 
-  // Smooth scroll for nav links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  // Init
+  window.addEventListener('load', initGoogleSignIn);
 </script>
+<script src="https://accounts.google.com/gsi/client" async></script>
 </body>
 </html>
